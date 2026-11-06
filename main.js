@@ -1,13 +1,58 @@
 /* RL Gesso e Iluminação — interações */
 (() => {
   "use strict";
-  document.documentElement.classList.add("js");
+  const html = document.documentElement;
+  html.classList.add("js");
 
   /* ---------- Configuração ---------- */
   const WHATSAPP = "5583986894249"; // (83) 98689-4249 — trocar aqui se mudar
   const INSTAGRAM = "https://www.instagram.com/rl_gesso_jp/";
   const TZ = "America/Fortaleza";
   const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+
+  /* ---------- Intro do logo ---------- */
+  let heroStarted = false;
+  const startHero = () => {
+    if (heroStarted) return; heroStarted = true;
+    requestAnimationFrame(() => document.querySelectorAll(".hero .reveal").forEach((el) => el.classList.add("is-in")));
+  };
+  const intro = document.querySelector("[data-intro]");
+  if (intro && html.classList.contains("intro-on")) {
+    let done = false;
+    const finish = () => {
+      if (done) return; done = true;
+      intro.classList.add("is-out");
+      html.classList.add("intro-out");
+      startHero();
+      setTimeout(() => { html.classList.remove("intro-on", "intro-out"); intro.remove(); }, 950);
+    };
+    const timer = setTimeout(finish, 3100);
+    intro.addEventListener("click", () => { clearTimeout(timer); finish(); });
+    document.addEventListener("keydown", (e) => { if (!done && ["Escape", "Enter", " "].includes(e.key)) { clearTimeout(timer); finish(); } });
+  } else {
+    if (intro) intro.remove();
+    startHero();
+  }
+
+  /* ---------- Mídias: fade ao carregar + pré-carregamento antes de chegar ---------- */
+  document.querySelectorAll("img[data-fade]").forEach((img) => {
+    const show = () => img.classList.add("is-loaded");
+    if (img.complete && img.naturalWidth) show();
+    else { img.addEventListener("load", show, { once: true }); img.addEventListener("error", show, { once: true }); }
+  });
+  const warm = (root) => {
+    root.querySelectorAll('img[loading="lazy"]').forEach((img) => { img.loading = "eager"; });
+    root.querySelectorAll("video").forEach((v) => { if (v.preload === "none") v.preload = "metadata"; });
+    root.dispatchEvent(new CustomEvent("warm"));
+  };
+  const warmTargets = document.querySelectorAll("[data-carousel], [data-vcarousel], .featured");
+  if ("IntersectionObserver" in window) {
+    const wio = new IntersectionObserver((entries) => {
+      entries.forEach((en) => { if (en.isIntersecting) { warm(en.target); wio.unobserve(en.target); } });
+    }, { rootMargin: "1800px 0px" });
+    warmTargets.forEach((t) => wio.observe(t));
+  } else warmTargets.forEach(warm);
 
   /* ---------- Links de WhatsApp ---------- */
   document.querySelectorAll("[data-wa]").forEach((a) => {
@@ -60,7 +105,7 @@
     }, { rootMargin: "0px 0px -8% 0px", threshold: 0.12 });
     revealables.forEach((el) => io.observe(el));
     // itens já no topo da página (hero) entram de imediato
-    requestAnimationFrame(() => document.querySelectorAll(".hero .reveal").forEach((el) => el.classList.add("is-in")));
+    // o hero entra quando a intro termina (ou de imediato, sem intro)
   }
 
   /* ---------- Carrosséis (fotos, soluções, depoimentos) ---------- */
@@ -142,11 +187,14 @@
     root.querySelector("[data-prev]").addEventListener("click", () => go(active - 1));
     root.querySelector("[data-next]").addEventListener("click", () => go(active + 1));
 
+    let near = false;
+    root.addEventListener("warm", () => { near = true; playActive(); });
     const playActive = () => {
       cards.forEach((c, i) => {
         const v = c.querySelector("video");
+        if (Math.abs(i - active) <= 1 && near && v.preload !== "auto") v.preload = "auto";
         if (i === active && inView && !reduced) {
-          if (v.preload === "none") v.preload = "auto";
+          if (v.preload !== "auto") v.preload = "auto";
           const p = v.play(); if (p && p.catch) p.catch(() => {});
         } else if (!v.paused) v.pause();
       });
