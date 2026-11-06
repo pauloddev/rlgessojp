@@ -211,6 +211,8 @@
     const day = parts.weekday; const mins = Number(parts.hour) * 60 + Number(parts.minute);
     const open = (["Mon", "Tue", "Wed", "Thu", "Fri"].includes(day) && mins >= 480 && mins < 1080) || (day === "Sat" && mins >= 480 && mins < 720);
     status.textContent = open ? "Aberto agora" : "Fechado agora";
+    const dayIdx = { Sun: 0, Mon: 1, Tue: 2, Wed: 3, Thu: 4, Fri: 5, Sat: 6 }[day];
+    document.querySelectorAll("[data-hours] li").forEach((li) => li.classList.toggle("is-today", li.dataset.days.split(",").map(Number).includes(dayIdx)));
     status.classList.add(open ? "is-open" : "is-closed");
   }
 

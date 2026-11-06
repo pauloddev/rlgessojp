@@ -377,38 +377,71 @@
 <!-- ============ 09 CONTATO ============ -->
 <section class="section section--light contact" id="contato" aria-labelledby="contato-title">
   <div class="container">
-    <div class="section-head">
-      <p class="kicker reveal"><span>08</span> Localização e contato</p>
-      <h2 class="h2 reveal" id="contato-title">Vamos tirar seu projeto <em>do papel?</em></h2>
+    <div class="section-head section-head--split">
+      <div>
+        <p class="kicker reveal"><span>08</span> Localização e contato</p>
+        <h2 class="h2 reveal" id="contato-title">Vamos tirar seu projeto <em>do papel?</em></h2>
+      </div>
+      <p class="section-head__lead reveal">Atendemos em toda João Pessoa. Fale direto com o Paulo pelo WhatsApp ou venha conhecer a RL no Valentina Figueiredo.</p>
     </div>
     <div class="contact__grid">
-      <div class="contact__card reveal-img">
-        <img class="contact__logo" src="assets/img/logo-192.png" width="72" height="72" loading="lazy" alt="Logo RL Gesso e Iluminação">
-        <h3>RL Gesso e Iluminação</h3>
-        <p class="contact__ceo">Paulo Lisboa — CEO</p>
-        <dl class="contact__list">
-          <div><dt>Endereço</dt><dd>Rua Severina Paiva de Araújo, 235<br>Valentina Figueiredo, João Pessoa — PB<br>CEP 58064-560</dd></div>
-          <div><dt>WhatsApp</dt><dd><a data-wa="Olá, Paulo! Vim pelo site e gostaria de falar sobre um projeto." href="#contato">(83) 98689-4249</a></dd></div>
-          <div><dt>Instagram</dt><dd><a href="https://www.instagram.com/rl_gesso_jp/" target="_blank" rel="noopener">@rl_gesso_jp</a></dd></div>
-          <div><dt>Horário</dt><dd>
-            <span class="status" data-open-status>—</span>
-            <ul class="hours" role="list">
-              <li><span>Segunda a sexta</span><span>08:00 – 18:00</span></li>
-              <li><span>Sábado</span><span>08:00 – 12:00</span></li>
-              <li><span>Domingo</span><span>Fechado</span></li>
-            </ul>
-          </dd></div>
-        </dl>
-        <div class="contact__actions">
-          <a class="btn btn--dark" data-wa="Olá, Paulo! Vim pelo site e gostaria de solicitar um orçamento." href="#contato">
-            <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20l1.3-3.9A8 8 0 1 1 8 19z"/><path d="M9 9.5c.3 2.4 2.1 4.3 4.5 4.8l1-1.1 1.8.8c-.2 1.1-1.1 1.9-2.2 1.9A6 6 0 0 1 8 10c0-1.1.8-2 1.9-2.2l.8 1.8z"/></svg>
-            Chamar no WhatsApp
+      <article class="contact__card reveal-img">
+        <header class="contact__head">
+          <img class="contact__logo" src="assets/img/logo-192.png" width="64" height="64" loading="lazy" alt="Logo RL Gesso e Iluminação">
+          <div>
+            <h3>RL Gesso e Iluminação</h3>
+            <p class="contact__ceo">Paulo Lisboa — CEO</p>
+          </div>
+          <span class="status" data-open-status>—</span>
+        </header>
+
+        <ul class="contact__info" role="list">
+          <li>
+            <span class="contact__icon"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-7-6.2-7-11.5a7 7 0 0 1 14 0C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg></span>
+            <div><span class="contact__label">Endereço</span>
+              <p>Rua Severina Paiva de Araújo, 235<br>Valentina Figueiredo, João Pessoa — PB · CEP 58064-560</p></div>
+          </li>
+          <li>
+            <span class="contact__icon"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span>
+            <div><span class="contact__label">Horário de atendimento</span>
+              <ul class="hours" role="list" data-hours>
+                <li data-days="1,2,3,4,5"><span>Segunda a sexta</span><span>08:00 – 18:00</span></li>
+                <li data-days="6"><span>Sábado</span><span>08:00 – 12:00</span></li>
+                <li data-days="0"><span>Domingo</span><span>Fechado</span></li>
+              </ul></div>
+          </li>
+        </ul>
+
+        <div class="contact__social">
+          <a class="social social--wa" data-wa="Olá, Paulo! Vim pelo site e gostaria de solicitar um orçamento." href="#contato">
+            <span class="social__icon"><svg viewBox="0 0 24 24" aria-hidden="true" class="ico-fill"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm5.3 14.1c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .1-3.3-.8-2.8-1.1-4.5-4-4.7-4.2-.1-.2-1.1-1.5-1.1-2.8s.7-2 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 2c.1.2.1.4 0 .5l-.4.6-.4.4c-.1.2-.3.3-.1.6.2.3.7 1.2 1.6 2 1.1 1 2 1.3 2.3 1.4.3.2.4.1.6-.1l.8-1c.2-.2.4-.2.6-.1l1.9.9c.3.1.4.2.5.3.1.2.1.7-.1 1.2z"/></svg></span>
+            <span class="social__text"><strong>WhatsApp</strong><small>(83) 98689-4249</small></span>
+            <svg class="ico social__arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8"/></svg>
           </a>
-          <a class="btn btn--outline" href="https://www.google.com/maps/dir/?api=1&amp;destination=Rua+Severina+Paiva+de+Ara%C3%BAjo,+235,+Valentina+Figueiredo,+Jo%C3%A3o+Pessoa+-+PB,+58064-560" target="_blank" rel="noopener">Como chegar</a>
+          <a class="social social--ig" href="https://www.instagram.com/rl_gesso_jp/" target="_blank" rel="noopener">
+            <span class="social__icon"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".6" fill="currentColor"/></svg></span>
+            <span class="social__text"><strong>Instagram</strong><small>@rl_gesso_jp</small></span>
+            <svg class="ico social__arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8"/></svg>
+          </a>
         </div>
-      </div>
+      </article>
+
       <div class="contact__map reveal-img" data-d="2">
-        <iframe title="Mapa: RL Gesso e Iluminação, Valentina Figueiredo, João Pessoa" src="https://www.google.com/maps?q=Rua+Severina+Paiva+de+Ara%C3%BAjo,+235,+Valentina+Figueiredo,+Jo%C3%A3o+Pessoa+-+PB,+58064-560&amp;output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
+        <div class="map__frame">
+          <iframe title="Mapa: RL Gesso e Iluminação, Valentina Figueiredo, João Pessoa" src="https://www.google.com/maps?q=Rua+Severina+Paiva+de+Ara%C3%BAjo,+235,+Valentina+Figueiredo,+Jo%C3%A3o+Pessoa+-+PB,+58064-560&amp;output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
+          <div class="map__label">
+            <span class="map__dot" aria-hidden="true"></span>
+            <div><strong>RL Gesso e Iluminação</strong><span>Valentina Figueiredo · João Pessoa — PB</span></div>
+          </div>
+        </div>
+        <div class="map__actions">
+          <a class="mapbtn mapbtn--google" href="https://www.google.com/maps/search/?api=1&amp;query=Rua+Severina+Paiva+de+Ara%C3%BAjo,+235,+Valentina+Figueiredo,+Jo%C3%A3o+Pessoa+-+PB,+58064-560" target="_blank" rel="noopener">
+            <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-7-6.2-7-11.5a7 7 0 0 1 14 0C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg><span>Abrir no Google Maps</span>
+          </a>
+          <a class="mapbtn mapbtn--waze" href="https://waze.com/ul?q=Rua%20Severina%20Paiva%20de%20Ara%C3%BAjo%2C%20235%2C%20Valentina%20Figueiredo%2C%20Jo%C3%A3o%20Pessoa&amp;navigate=yes" target="_blank" rel="noopener">
+            <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 11l18-8-8 18-2-8-8-2z"/></svg><span>Abrir no Waze</span>
+          </a>
+        </div>
       </div>
     </div>
   </div>
