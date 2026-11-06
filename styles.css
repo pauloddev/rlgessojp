@@ -12,7 +12,10 @@
   --plaster-2: #EAE5DC;
   --beige: #D6C6AE;
   --blue: #0A6CF0;         /* azul do logo — fundos de botões */
-  --blue-hi: #3D8BFF;      /* azul legível sobre fundo escuro */
+  --blue-hi: #4FA3FF;      /* azul neon legível sobre fundo escuro */
+  --neon-text: 0 0 4px rgba(120,185,255,.55), 0 0 14px rgba(47,140,255,.55), 0 0 34px rgba(10,108,240,.45);
+  --neon-box: 0 0 0 1px rgba(140,195,255,.35) inset, 0 0 14px rgba(47,140,255,.55), 0 10px 34px -10px rgba(10,108,240,.85);
+  --sheen: linear-gradient(180deg, #3A93FF 0%, #0A6CF0 55%, #0858C9 100%);
   --blue-ink: #0A5BD0;     /* azul legível sobre fundo claro */
   --on-blue: #FFFFFF;
   --ink: #141414;
@@ -537,6 +540,68 @@ figure { margin: 0; }
 .h3 em { font-weight: 800; }
 .rating strong { font-weight: 700; letter-spacing: -.04em; }
 @media (min-width: 1024px) { .hero__title { max-width: 15ch; } }
+
+
+/* ==========================================================
+   Neon — o azul se comporta como luz de LED
+   ========================================================== */
+/* textos azuis sobre fundo escuro brilham */
+.hero__title strong,
+.section--dark .h2 em, .cta .h2 em,
+.eyebrow, .kicker--dark, .brand__name small,
+.service__n, .diff__n, .footer__col h4, .contact__ceo { text-shadow: var(--neon-text); }
+.hero__title strong { color: #6AB2FF; text-shadow: 0 1px 2px rgba(0,0,0,.35), var(--neon-text); animation: neonOn 1.6s steps(1, end) 1.25s both; }
+@keyframes neonOn {
+  0% { opacity: .35; text-shadow: none } 8% { opacity: 1; text-shadow: var(--neon-text) } 12% { opacity: .4; text-shadow: none }
+  20% { opacity: 1; text-shadow: var(--neon-text) } 24% { opacity: .7 } 30%, 100% { opacity: 1; text-shadow: 0 1px 2px rgba(0,0,0,.35), var(--neon-text) }
+}
+.rating__stars svg, .tcard__stars svg { filter: drop-shadow(0 0 4px rgba(79,163,255,.75)); }
+.assurance li:nth-child(even) .ico, .contact__icon, .social--ig .social__icon { filter: drop-shadow(0 0 6px rgba(47,140,255,.45)); }
+
+/* botões e superfícies azuis: reflexo + brilho */
+.btn--gold, .assurance li:nth-child(odd) a, .mapbtn--google, .social--wa .social__icon, .wa-float { position: relative; overflow: hidden; }
+.btn--gold { background-image: var(--sheen); box-shadow: var(--neon-box); }
+.mapbtn--google { background-image: var(--sheen); box-shadow: var(--neon-box); }
+.social--wa .social__icon { background-image: var(--sheen); box-shadow: var(--neon-box); }
+.wa-float { background-image: var(--sheen); box-shadow: var(--neon-box), 0 12px 30px -8px rgba(0,0,0,.5); overflow: visible; }
+.wa-float::before { border-color: #4FA3FF; box-shadow: 0 0 12px rgba(47,140,255,.6); }
+@media (min-width: 900px) { .assurance li:nth-child(odd) a { background-image: var(--sheen); box-shadow: inset 0 1px 0 rgba(160,205,255,.4), inset 0 0 24px rgba(79,163,255,.25); } }
+@media (max-width: 899px) {
+  .assurance li:nth-child(1) a, .assurance li:nth-child(4) a { background-image: var(--sheen); box-shadow: inset 0 1px 0 rgba(160,205,255,.4), inset 0 0 24px rgba(79,163,255,.25); }
+  .assurance li:nth-child(3) a { background-image: none; box-shadow: none; }
+}
+/* feixe de luz passando (reflexo) */
+.btn--gold::after, .mapbtn--google::after, .assurance li:nth-child(odd) a::before {
+  content: ""; position: absolute; top: -20%; bottom: -20%; left: -60%; width: 40%; pointer-events: none;
+  background: linear-gradient(100deg, rgba(255,255,255,0) 0%, rgba(255,255,255,.38) 50%, rgba(255,255,255,0) 100%);
+  transform: skewX(-18deg) translateX(0); animation: sweep 5.5s var(--ease-io) 2.4s infinite;
+}
+.mapbtn--google::after { animation-delay: 3.2s; }
+.assurance li:nth-child(odd) a::before { animation-duration: 6.5s; }
+.assurance li:nth-child(3) a::before { animation-delay: 3.4s; }
+@keyframes sweep { 0% { transform: skewX(-18deg) translateX(0) } 28%, 100% { transform: skewX(-18deg) translateX(420%) } }
+@media (hover: hover) {
+  .btn--gold:hover { background-image: none; box-shadow: 0 0 0 1px rgba(79,163,255,.6) inset, 0 0 22px rgba(47,140,255,.45); text-shadow: var(--neon-text); }
+  .btn--gold:hover::after { animation: none; opacity: 0; }
+  .mapbtn--google:hover { background-image: none; box-shadow: 0 0 18px rgba(47,140,255,.35); }
+  .assurance li:nth-child(even) a:hover { background-image: var(--sheen); box-shadow: inset 0 0 24px rgba(79,163,255,.3); }
+  .assurance li:nth-child(odd) a:hover { background-image: none; box-shadow: inset 0 0 0 1px rgba(79,163,255,.5); text-shadow: var(--neon-text); }
+  .social--wa:hover { background-image: var(--sheen); box-shadow: inset 0 0 30px rgba(79,163,255,.3); }
+  .wa-float:hover { background-image: none; }
+}
+/* linhas de luz mais acesas */
+.lightline { box-shadow: 0 0 6px rgba(79,163,255,.9), 0 0 18px rgba(10,108,240,.6); }
+.lightline--dark { box-shadow: 0 0 8px rgba(10,108,240,.35); }
+.carousel__progress span { box-shadow: 0 0 8px rgba(79,163,255,.8); }
+.section--light .carousel__progress span { box-shadow: 0 0 6px rgba(10,108,240,.4); }
+.hero__lines .ln--3 { stroke: #6AB2FF; }
+.trust li::before { box-shadow: 0 0 6px rgba(79,163,255,.8); }
+.contact__logo { box-shadow: 0 0 0 1px rgba(79,163,255,.5), 0 0 18px rgba(47,140,255,.55), 0 0 40px rgba(10,108,240,.35); }
+.map__dot { background: #2F8CFF; box-shadow: 0 0 10px #4FA3FF, 0 0 0 5px rgba(10,108,240,.25); }
+@media (prefers-reduced-motion: reduce) {
+  .btn--gold::after, .mapbtn--google::after, .assurance li:nth-child(odd) a::before { display: none; }
+  .hero__title strong { animation: none; }
+}
 
 /* ==========================================================
    Transições de entrada (textos, imagens, seções)
